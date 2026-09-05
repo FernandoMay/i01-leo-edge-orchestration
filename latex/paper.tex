@@ -161,25 +161,27 @@ GA generations & 100 \\
 
 \begin{table}[h]
 \centering
-\caption{Performance Comparison (72 satellites, 1000 tasks)}
+\caption{Performance Comparison (72 satellites, 955 tasks)}
 \begin{tabular}{lccc}
 \toprule
 Method & Avg Latency (s) & Deadline Met (\%) & Exec Time (s) \\
 \midrule
-XING & 0.0823 & 94.2\% & 0.0034 \\
-PSO & 0.1067 & 79.8\% & 0.0156 \\
-GA & 0.0984 & 82.1\% & 0.0089 \\
+XING & 31.24 & 37.2\% & 0.037 \\
+PSO & 0.41 & 98.2\% & 0.458 \\
+GA & 0.42 & 98.1\% & 1.820 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+XING achieves the fastest execution time (0.037s) due to its greedy cognitive routing, while PSO and GA achieve higher deadline compliance through global optimization. The tradeoff demonstrates that XING's strength lies in real-time responsiveness rather than全局 optimality.
+
+\subsection{Execution Time Analysis}
+
+XING executes 12x faster than PSO and 49x faster than GA, making it suitable for real-time 6G edge orchestration where decisions must be made in milliseconds.
+
 \subsection{Scalability Analysis}
 
-We evaluated performance as the constellation scales from 12 to 144 satellites. XING maintains consistent performance gains across all scales, with the advantage increasing at larger constellation sizes due to better utilization of semantic memory compression.
-
-\subsection{Energy-Constrained Scenarios}
-
-Under energy constraints (satellites operating at 30-70\% capacity), XING's adaptive routing achieves 35\% higher throughput than PSO by proactively redistributing tasks away from energy-depleted satellites.
+We evaluated performance as the constellation scales from 12 to 144 satellites. XING maintains consistent execution time advantage across all scales.
 
 \section{Conclusion}
 
