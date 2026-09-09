@@ -3,6 +3,9 @@
 **Paper:** Cognitive Edge Orchestration for LEO Satellite Networks under Stochastic Resource Constraints
 **Venue:** CCIOT 2026 — Cloud Computing and Internet of Things
 **Authors:** Fernando May Fuentes et al.
+**ORCID:** https://orcid.org/0009-0002-3953-5224
+**Conference deadline:** September 1, 2026 (verify current CFP status)
+**Submission site:** http://cciot.org
 
 ## Overview
 
@@ -56,9 +59,9 @@ pytest tests/ -v
 
 | Method | Avg Latency (s) | Deadline Met (%) | Exec Time (s) |
 |--------|-----------------|------------------|---------------|
-| XING | 0.0823 | 94.2% | 0.0034 |
-| PSO | 0.1067 | 79.8% | 0.0156 |
-| GA | 0.0984 | 82.1% | 0.0089 |
+| XING-inspired | 28.07 | 39.5% | 0.047 |
+| PSO | 0.40 | 98.7% | 0.415 |
+| GA | 0.40 | 98.7% | 1.815 |
 
 ## Citation
 

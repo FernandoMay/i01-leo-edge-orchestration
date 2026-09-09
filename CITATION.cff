@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Cognitive Edge Orchestration for LEO Satellite Networks under Stochastic Resource Constraints"
+message: "If you use this artifact, cite the paper and software package."
+type: software
+authors:
+  - family-names: Fuentes
+    given-names: "Fernando May"
+    orcid: "https://orcid.org/0009-0002-3953-5224"
+repository-code: "https://github.com/FernandoMay/i01-leo-edge-orchestration"
+license: MIT
+date-released: 2026-09-09

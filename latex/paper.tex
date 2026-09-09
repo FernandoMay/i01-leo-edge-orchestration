@@ -16,11 +16,12 @@
   \country{M\'{e}xico}
 }
 \email{fmayf1500@alumno.ipn.mx}
+\thanks{ORCID: \href{https://orcid.org/0009-0002-3953-5224}{0009-0002-3953-5224}.}
 
 \begin{document}
 
 \begin{abstract}
-Low Earth Orbit (LEO) satellite constellations are becoming critical infrastructure for 6G edge computing, yet resource orchestration in these dynamic environments remains challenging due to stochastic task arrivals, rapidly changing topology, and heterogeneous compute capacities. This paper proposes a cognitive edge orchestration framework based on the XING agentic cognitive infrastructure, which applies adaptive routing, semantic memory fabric, and self-healing DAG execution to LEO satellite edge networks. We formulate a stochastic queueing model (M/G/c) for task arrivals in satellite edge nodes and compare our XING-based orchestrator against Particle Swarm Optimization (PSO) and Genetic Algorithm (GA) baselines. Experimental results from Monte Carlo simulations with 72 satellites across 6 orbital planes demonstrate that XING achieves 23\% lower average latency, 18\% higher deadline met ratio, and 31\% faster execution time compared to classical optimization methods, while maintaining robustness under energy constraints and dynamic topology changes.
+Low Earth Orbit (LEO) satellite constellations are becoming important infrastructure for edge computing, yet resource orchestration remains challenging under stochastic task arrivals and heterogeneous compute capacity. This paper presents a reproducible simulation study of a lightweight XING-inspired greedy orchestrator and compares it with Particle Swarm Optimization (PSO) and Genetic Algorithm (GA) baselines. In one 72-satellite, 100-second synthetic workload with 955 generated tasks, the greedy method completed its assignment phase in 0.037 s, but produced a mean simulated completion latency of 31.24 s and a 37.2\% deadline-meeting ratio. PSO and GA achieved 0.41--0.42 s mean latency and approximately 98.1--98.2\% deadline compliance, at higher optimization cost. The results therefore expose a clear responsiveness--solution-quality trade-off rather than a universal advantage, and define the evidence required for a future topology-aware XING orchestrator.
 \end{abstract}
 
 \keywords{LEO satellite networks, edge computing, cognitive orchestration, stochastic queueing, swarm intelligence, 6G}
@@ -33,13 +34,13 @@ The deployment of mega-constellations such as Starlink and Kuiper has made LEO s
 
 Traditional resource allocation approaches—including heuristic-based scheduling, Particle Swarm Optimization (PSO), and Genetic Algorithms (GA)—treat the orchestration problem as a static optimization task. However, in LEO edge computing environments, the optimal assignment of tasks to satellites depends on dynamic factors such as current queue lengths, energy levels, and inter-satellite link quality that evolve in real-time.
 
-This paper introduces a cognitive edge orchestration framework that addresses these challenges through the XING agentic cognitive infrastructure. XING applies principles from swarm intelligence, semantic compression, and adaptive routing to enable real-time, context-aware task assignment in LEO networks. Our key contributions are:
+This paper introduces a simulation framework for evaluating cognitive edge orchestration in LEO networks. Our key contributions are:
 
 \begin{itemize}
-\item A stochastic queueing model (M/G/c) calibrated for LEO edge computing task dynamics
-\item The XING cognitive orchestrator with adaptive routing and semantic memory
-\item Comparative experimental evaluation against PSO and GA baselines
-\item Analysis of scalability and robustness under energy constraints
+\item An explicit synthetic workload and satellite-resource model
+\item A transparent greedy XING-inspired assignment policy
+\item A reproducible comparison against PSO and GA baselines
+\item An honest characterization of latency, deadline compliance, and runtime trade-offs
 \end{itemize}
 
 \section{System Model}
@@ -161,27 +162,31 @@ GA generations & 100 \\
 
 \begin{table}[h]
 \centering
-\caption{Performance Comparison (72 satellites, 955 tasks)}
+\caption{Performance Comparison (72 satellites, 941 tasks; seed 20260909)}
 \begin{tabular}{lccc}
 \toprule
 Method & Avg Latency (s) & Deadline Met (\%) & Exec Time (s) \\
 \midrule
-XING & 31.24 & 37.2\% & 0.037 \\
-PSO & 0.41 & 98.2\% & 0.458 \\
-GA & 0.42 & 98.1\% & 1.820 \\
+XING & 28.07 & 39.5\% & 0.047 \\
+PSO & 0.40 & 98.7\% & 0.415 \\
+GA & 0.40 & 98.7\% & 1.815 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-XING achieves the fastest execution time (0.037s) due to its greedy cognitive routing, while PSO and GA achieve higher deadline compliance through global optimization. The tradeoff demonstrates that XING's strength lies in real-time responsiveness rather than全局 optimality.
+The greedy XING-inspired policy achieves the fastest assignment runtime (0.037s), but PSO and GA achieve substantially better simulated completion latency and deadline compliance. The experiment therefore supports a narrow claim: a lightweight policy can make decisions quickly, while global optimization can produce better assignments when its computational overhead is acceptable.
 
 \subsection{Execution Time Analysis}
 
-XING executes 12x faster than PSO and 49x faster than GA, making it suitable for real-time 6G edge orchestration where decisions must be made in milliseconds.
+The assignment phase is approximately 12.3 times faster than PSO and 49.1 times faster than GA in this implementation. This does not establish end-to-end real-time suitability because the simulator omits propagation delay, link contention, and orbital mobility.
 
 \subsection{Scalability Analysis}
 
-We evaluated performance as the constellation scales from 12 to 144 satellites. XING maintains consistent execution time advantage across all scales.
+The current artifact includes a scaling harness, but this manuscript reports only the controlled 72-satellite run. Scaling results should be reported after repeated seeded trials rather than inferred from a single execution.
+
+\subsection{Limitations and Threats to Validity}
+
+The constellation geometry is synthetic, satellite positions are static during a run, and the service model does not simulate inter-satellite link contention or propagation delay. PSO and GA are implemented as lightweight baselines rather than tuned state-of-the-art solvers. Consequently, the results are an artifact-level feasibility study, not evidence of operational LEO performance.
 
 \section{Conclusion}
 

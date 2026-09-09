@@ -489,6 +489,8 @@ class SimulationRunner:
 
 
 if __name__ == "__main__":
+    np.random.seed(20260909)
+    random.seed(20260909)
     print("=" * 60)
     print("XING Cognitive Edge Orchestration for LEO Networks")
     print("CCIOT 2026 — Simulation Runner")
