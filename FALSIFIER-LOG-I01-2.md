@@ -239,3 +239,36 @@ the history is 20260909. Eleven files are tracked in HEAD.
 **No cause is selected.** A different seed, dataset, configuration, lost commit or
 manual run are all plausible; none is established. I01-3 tests the one candidate that
 can be tested.
+
+---
+
+## Post-adjudication check: §Execution Time Analysis ratios
+
+While adjudicating, the ratios at `:181` were checked arithmetically. Both ratios in
+one sentence must share a single XING denominator, because `run_comparison` measures
+XING's assignment time **once** per run (`:414-416`), before PSO and before GA.
+
+| stated | implied XING exec |
+|---|---|
+| 12.3× faster than PSO | 0.415 / 12.3 = **0.03374 s** |
+| 49.1× faster than GA | 1.815 / 49.1 = **0.03697 s** |
+
+They differ by 0.00323 s, so the two ratios cannot both come from one run.
+
+Cross-checked against the document's own bases:
+
+| basis | PSO ratio | GA ratio |
+|---|---|---|
+| the table (XING 0.047) | 8.83× | 38.62× |
+| the abstract (XING 0.037) | 11.22× | **49.05×** |
+| as stated | 12.30× | 49.10× |
+
+The GA ratio traces to the **abstract's** superseded figures. The PSO ratio traces to
+neither. Recorded as **C12/C13, R3**.
+
+**Wall-clock caveat, stated explicitly.** `execution_time` is wall-clock, so the
+ratios cannot be reproduced and their mutual inconsistency is consistent with the
+measurements having come from different sessions. The finding is therefore a
+document-provenance finding, not a determinism finding: the paper presents ratios
+derived from at least two different XING measurements, names no run, and records no
+timing method. It is NOT evidence about which run produced the abstract.
